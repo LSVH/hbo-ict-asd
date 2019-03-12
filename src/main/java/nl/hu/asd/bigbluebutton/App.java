@@ -3,6 +3,7 @@ package nl.hu.asd.bigbluebutton;
 import nl.hu.asd.bigbluebutton.adapter.VideoPublishService;
 import nl.hu.asd.bigbluebutton.adapter.VideoPublishServiceInterface;
 import nl.hu.asd.bigbluebutton.adapter.VideoService;
+import nl.hu.asd.bigbluebutton.adapter.VideoServiceInterface;
 import nl.hu.asd.bigbluebutton.model.enums.VideoEncoding;
 import nl.hu.asd.bigbluebutton.model.enums.VideoQuality;
 import nl.hu.asd.bigbluebutton.model.values.MeetingId;
@@ -18,12 +19,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        VideoRepositoryInterface videoRepository = new VideoRepository();
-        WebcamRepositoryInterface webcamRepository = new WebcamRepository();
-        VideoPublishServiceInterface videoPublishService = new VideoPublishService();
-        VideoApplicationService videoApplicationService = new VideoApplicationService(videoRepository, webcamRepository, videoPublishService);
-        VideoService videoService = new VideoService(videoApplicationService);
-
+        VideoServiceInterface videoService = getVideoService();
 
         WebcamVideoId webcamVideoId = new WebcamVideoId();
         SenderId senderId = new SenderId();
@@ -33,6 +29,15 @@ public class App
         videoService.ActivateWebcam(webcamVideoId, VideoEncoding.H263);
         videoService.PublishVideoStream(senderId, webcamVideoId, meetingId, VideoQuality.good);
 
+    }
 
+    public static VideoService getVideoService() {
+
+        VideoRepositoryInterface videoRepository = new VideoRepository();
+        WebcamRepositoryInterface webcamRepository = new WebcamRepository();
+        VideoPublishServiceInterface videoPublishService = new VideoPublishService();
+        VideoApplicationService videoApplicationService = new VideoApplicationService(videoRepository, webcamRepository, videoPublishService);
+
+        return new VideoService(videoApplicationService);
     }
 }

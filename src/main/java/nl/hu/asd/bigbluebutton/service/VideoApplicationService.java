@@ -3,7 +3,6 @@ package nl.hu.asd.bigbluebutton.service;
 import nl.hu.asd.bigbluebutton.adapter.VideoPublishServiceInterface;
 import nl.hu.asd.bigbluebutton.factory.VideoStreamFactory;
 import nl.hu.asd.bigbluebutton.model.*;
-import nl.hu.asd.bigbluebutton.adapter.VideoServiceInterface;
 import nl.hu.asd.bigbluebutton.model.enums.VideoEncoding;
 import nl.hu.asd.bigbluebutton.model.enums.VideoQuality;
 import nl.hu.asd.bigbluebutton.model.values.MeetingId;
@@ -12,7 +11,7 @@ import nl.hu.asd.bigbluebutton.model.values.WebcamVideoId;
 import nl.hu.asd.bigbluebutton.repository.VideoRepositoryInterface;
 import nl.hu.asd.bigbluebutton.repository.WebcamRepositoryInterface;
 
-public class VideoApplicationService implements VideoServiceInterface {
+public class VideoApplicationService {
     private VideoRepositoryInterface videoRepository;
     private WebcamRepositoryInterface webcamRepository;
     private VideoPublishServiceInterface videoPublishService;
@@ -36,5 +35,13 @@ public class VideoApplicationService implements VideoServiceInterface {
         VideoStream videoStream = new VideoStreamFactory().buildVideoStream(webcamVideo, senderId, meetingId, videoQuality);
 
         videoPublishService.PublishStream(videoStream);
+    }
+
+    public VideoRepositoryInterface getVideoRepository() {
+        return videoRepository;
+    }
+
+    public VideoPublishServiceInterface getVideoPublishService() {
+        return videoPublishService;
     }
 }
