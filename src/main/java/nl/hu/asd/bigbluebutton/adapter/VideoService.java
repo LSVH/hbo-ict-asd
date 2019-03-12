@@ -1,6 +1,10 @@
 package nl.hu.asd.bigbluebutton.adapter;
 
-import nl.hu.asd.bigbluebutton.model.*;
+import nl.hu.asd.bigbluebutton.model.enums.VideoEncoding;
+import nl.hu.asd.bigbluebutton.model.enums.VideoQuality;
+import nl.hu.asd.bigbluebutton.model.values.MeetingId;
+import nl.hu.asd.bigbluebutton.model.values.SenderId;
+import nl.hu.asd.bigbluebutton.model.values.WebcamVideoId;
 import nl.hu.asd.bigbluebutton.service.VideoApplicationService;
 
 public class VideoService {

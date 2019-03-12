@@ -1,4 +1,4 @@
-package nl.hu.asd.bigbluebutton.model;
+package nl.hu.asd.bigbluebutton.model.values;
 
 public class ReceiverId {
     private int id;
